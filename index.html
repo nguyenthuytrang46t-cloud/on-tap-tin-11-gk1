@@ -49,7 +49,7 @@ function shuffle(a){const x=[...a];for(let i=x.length-1;i>0;i--){const j=Math.fl
 function makeQuestion(q){return {...q,shownOptions:shuffle(q.options.map(o=>({...o}))) }}
 function showOnly(id){["home","practice","test","result"].forEach(x=>$(x).classList.toggle("hidden",x!==id));window.scrollTo({top:0,behavior:"smooth"})}
 function backHome(){showOnly("home")}
-function startPractice(){practiceList=shuffle(BANK);pIndex=0;pAnswered=false;showOnly("practice");renderPractice()}
+function startPractice(){practiceList=shuffle(BANK).map(makeQuestion);pIndex=0;pAnswered=false;showOnly("practice");renderPractice()}
 function renderPractice(){
  const q=practiceList[pIndex];pAnswered=false;$("pnext").disabled=true;$("pfeedback").classList.add("hidden");
  $("pcount").textContent=`Câu ${pIndex+1} / ${practiceList.length}`;$("pbar").style.width=`${(pIndex+1)/practiceList.length*100}%`;
